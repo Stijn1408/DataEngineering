@@ -5,4 +5,9 @@ def score_bar_plot(score):
     # ax = fig.add_axes([0,0,1,1])
     # ax.bar(score.keys(), score.values())
     #plt.show()
-    print("A plot was created :-)")
+    key = score.keys()
+    text_out = {
+        "Message:": "A plot was created :-)",
+        "Keys:": key
+    }
+    return jsonify(text_out), 200

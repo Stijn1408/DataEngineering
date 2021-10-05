@@ -12,6 +12,7 @@ def bar_plot():
     # receive the prediction request data as the message body
     content = request.get_json()
     scores = json.loads(content)
-    visualization.score_bar_plot(scores)
+    plot = visualization.score_bar_plot(scores)
+    return plot
 
 app.run(host='0.0.0.0', port=5000)
