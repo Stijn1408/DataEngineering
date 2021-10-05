@@ -2,7 +2,7 @@ from flask import Flask, json, request, Response, jsonify, send_file
 
 from resources import visualization
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.config["DEBUG"] = True
 
 
