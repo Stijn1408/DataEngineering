@@ -6,7 +6,6 @@ import ast
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-
 @app.route('/visualization-cp/results', methods=['POST'])
 def bar_plot():
     # receive the prediction request data as the message body
