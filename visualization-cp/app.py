@@ -1,6 +1,7 @@
 from flask import Flask, json, request, Response, jsonify, send_file
 
 from resources import visualization
+import ast
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -10,7 +11,8 @@ app.config["DEBUG"] = True
 def bar_plot():
     # receive the prediction request data as the message body
     content = request.get_json()
-    scores = json.loads(content)
+    scores = json.dumps(content)
+    scores = ast.literal_eval(scores)
     bytes_object = visualization.score_bar_plot(scores)
     return send_file(bytes_object, attachment_filename = 'barchart.png', mimetype = 'image/npg')
 
