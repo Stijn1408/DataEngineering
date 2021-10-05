@@ -14,8 +14,8 @@ services:
       - trainingdb_service
     environment:
       - TRAININGDB_API=http://trainingdb_service:5000/training-db/diabetes
-      - MODEL_REPO=model_repo_de2021
-      - PROJECT_ID=yourprojectidhere
+      - MODEL_REPO=model_repo_jads8
+      - PROJECT_ID=10.128.0.7
     networks:
       - training-pipeline
     ports:
@@ -25,8 +25,8 @@ services:
     depends_on:
       - training_service
     environment:
-      - MODEL_REPO=model_repo_de2021
-      - PROJECT_ID=yourprojectidhere
+      - MODEL_REPO=model_repo_jads8
+      - PROJECT_ID=10.128.0.7
     networks:
       - prediction-pipeline
     ports:
