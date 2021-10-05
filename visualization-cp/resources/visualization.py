@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+from flask import jsonify
+
 
 def score_bar_plot(score):
     # fig = plt.figure()
