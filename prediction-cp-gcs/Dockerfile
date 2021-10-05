@@ -11,8 +11,8 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
 # Enviroment Variables
-ENV PROJECT_ID=yourprojectidhere
-ENV MODEL_REPO=model_repo_de2021
+ENV PROJECT_ID=10.128.0.7
+ENV MODEL_REPO=model_repo_jads8
 # Run our App
 CMD ["python3","app.py"]
 
