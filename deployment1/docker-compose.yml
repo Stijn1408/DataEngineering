@@ -8,6 +8,7 @@ services:
       - training-pipeline
     ports:
       - "5000:5000"
+
   training_service:
     image: indikakumara/trainapi-gcs:0.0.1
     depends_on:
@@ -20,6 +21,7 @@ services:
       - training-pipeline
     ports:
       - "5001:5000"
+
   prediction_service:
     image: indikakumara/predictionapi-gcs:0.0.1
     depends_on:
@@ -31,6 +33,7 @@ services:
       - prediction-pipeline
     ports:
       - "5002:5000"
+
   visualization_service:
     image: jads8/visualization:0.0.1
     depends_on:
@@ -42,10 +45,25 @@ services:
       - visualization-pipeline
     ports:
       - "5003:5000"
+
+  sample_service:
+    image: jads8/sample:0.0.1
+    depends_on:
+      - prediction_service
+    environment:
+      - MODEL_REPO=model_repo_jads8
+      - PROJECT_ID=10.128.0.7
+    networks:
+      - sample-pipeline
+    ports:
+      - "5004:5000"
+
 networks:
   training-pipeline:
     driver: overlay
   prediction-pipeline:
     driver: overlay
   visualization-pipeline:
+    driver: overlay
+  sample-pipeline:
     driver: overlay
