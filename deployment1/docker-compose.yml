@@ -51,7 +51,6 @@ services:
     depends_on:
       - prediction_service
     environment:
-      - PREDICTION_API=http://prediction_service:5000/prediction-cp/results
       - MODEL_REPO=model_repo_jads8
       - PROJECT_ID=10.128.0.7
     networks:
