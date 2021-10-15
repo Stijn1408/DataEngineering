@@ -1,12 +1,12 @@
 import pandas as pd
 from flask import Flask, json, request
 
-from resources.predictor import DiabetesPredictor
+from resources.predictor import CylinderPredictor
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-@app.route('/diabetes_predictor', methods=['PUT'])
+@app.route('/cylinder_predictor', methods=['PUT'])
 def refresh_model():
     return dp.download_model()
 
@@ -19,6 +19,6 @@ def predict():
     return dp.predict(df)
 
 
-dp = DiabetesPredictor()
+dp = CylinderPredictor()
 
 app.run(host='0.0.0.0', port=5000)
