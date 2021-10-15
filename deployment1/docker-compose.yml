@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   trainingdb_service:
-    image: indikakumara/trainingdbapi:0.0.1
+    image: jads8/trainingdbapi:0.0.1
     environment:
       - DB_URL=sqlite:///features.db
     networks:
@@ -10,7 +10,7 @@ services:
       - "5000:5000"
 
   training_service:
-    image: indikakumara/trainapi-gcs:0.0.1
+    image: jads8/trainapi-gcs:0.0.1
     depends_on:
       - trainingdb_service
     environment:
@@ -23,7 +23,7 @@ services:
       - "5001:5000"
 
   prediction_service:
-    image: indikakumara/predictionapi-gcs:0.0.1
+    image: jads8/predictionapi-gcs:0.0.1
     depends_on:
       - training_service
     environment:
