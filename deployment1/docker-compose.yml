@@ -14,7 +14,7 @@ services:
     depends_on:
       - trainingdb_service
     environment:
-      - TRAININGDB_API=http://trainingdb_service:5000/training-db/diabetes
+      - TRAININGDB_API=http://trainingdb_service:5000/training-db/cars
       - MODEL_REPO=model_repo_jads8
       - PROJECT_ID=10.128.0.7
     networks:
