@@ -2,12 +2,13 @@
 # see https://machinelearningmastery.com/save-load-keras-deep-learning-models/
 import logging
 import os
-
 from flask import jsonify
 from google.cloud import storage
 from keras.layers import Dense
 from keras.models import Sequential
-
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
+import pickle
 
 def train(dataset):
     # split into input (X) and output (Y) variables
@@ -29,12 +30,32 @@ def train(dataset):
         "accuracy:": scores[1],
         "loss": scores[0],
     }
+
+    # model = LogisticRegression(solver='liblinear', random_state=0).fit(x, y)
+    #
+    # scores = model.score(x,y)
+    # matrix = confusion_matrix(y, model.predict(x))
+    # TN = round(matrix[0][0], 2)
+    # FN = round(matrix[1][0], 2)
+    # FP = round(matrix[0][1], 2)
+    # TP = round(matrix[1][1], 2)
+    #
+    # text_out = {
+    #     "Accuracy: ": scores,
+    #     "True Negatives: ": TN,
+    #     "False Negatives: ": FN,
+    #     "False Positives: ": FP,
+    #     "True Positives: ": TP
+    # }
+
     # Saving model in a given location provided as an env. variable
     project_id = os.environ.get('PROJECT_ID', 'Specified environment variable is not set.')
     model_repo = os.environ.get('MODEL_REPO', 'Specified environment variable is not set.')
     if model_repo:
         # Save the model localy
         model.save('local_model.h5')
+        # filename = 'model.h5'
+        # pickle.dump(model, open(filename, 'wb'))
         # Save to GCS as model.h5
         client = storage.Client(project=project_id)
         bucket = client.get_bucket(model_repo)
