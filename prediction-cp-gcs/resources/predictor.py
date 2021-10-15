@@ -25,6 +25,6 @@ class DiabetesPredictor:
         val_set2 = dataset.copy()
         result = self.model.predict(dataset)
         y_classes = result.argmax(axis=-1)
-        val_set2['class'] = y_classes.tolist()
+        val_set2['cylinders'] = y_classes.tolist()
         dic = val_set2.to_dict(orient='records')
         return jsonify(dic), 200
